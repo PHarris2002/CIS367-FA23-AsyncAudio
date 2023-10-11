@@ -10,18 +10,20 @@ const author = document.querySelector('#author')
 const cover = document.querySelector('#cover')
 
 // Songs
-const songs = ['BestPart', 'Aidan', 'Better Days']
-const authors = ['BestPart', 'Aidan', 'Better Days']
+const songs = ['Better Days', 'Best Part of Me', 'Aidan']
+const authors = ['LAKEY INSPIRED','The Dunwells', 'Jonathan Ceaser']
 
-// Keep track of authors
-let songIndex = 2
+// Keep track of songs and authors
+let songIndex = 0
+let authorIndex = 0
 
 // Initially load song info DOM
-loadSong(songs[songIndex])
+loadSongAndAuthor(songs[songIndex], authors[authorIndex])
 
 // Update song details
-function loadSong(song) {
+function loadSongAndAuthor(song, artist) {
     title.innerText = song
+    author.innerText = artist
     audio.src=`songs/${song}.mp3`
     cover.src=`albumart/${song}.jpg`
 }
@@ -44,24 +46,28 @@ function pauseSong() {
 
 function prevSong() {
     songIndex--
+    authorIndex--
 
     if(songIndex < 0) {
         songIndex = songs.length - 1
+        authorIndex = authors.length - 1
     }
 
-    loadSong(songs[songIndex])
+    loadSongAndAuthor(songs[songIndex], authors[authorIndex])
 
     playSong()
 }
 
 function nextSong() {
     songIndex++
+    authorIndex++
 
     if (songIndex > songs.length - 1) {
         songIndex = 0
+        authorIndex = 0
     }
 
-    loadSong(songs[songIndex])
+    loadSongAndAuthor(songs[songIndex], authors[authorIndex])
 
     playSong()
 }
