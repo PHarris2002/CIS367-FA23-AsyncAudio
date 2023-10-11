@@ -31,6 +31,7 @@ const songs = [
     'Voices of Spring',
     'Your Shoulder']
 
+// Authors
 const authors = [
     'LAKEY INSPIRED',
     'Jonathan Ceaser',
