@@ -19,8 +19,38 @@ const songs = [
     'Fly or Die',
     'Fraggle',
     'Colorful World',
-    'April Kisses',]
-const authors = ['LAKEY INSPIRED','Jonathan Ceaser', 'Eddie Lang']
+    "I Can't Make You Love Me",
+    'Just Relax',
+    'Local Forecast - Elevator',
+    'MEET ME AT THE TOP',
+    'Paranormal is Real',
+    'Perfect',
+    'Polarity',
+    'Salsa After-Work Party',
+    'Upbeat Funk Pop',
+    'Voices of Spring',
+    'Your Shoulder']
+
+const authors = [
+    'LAKEY INSPIRED',
+    'Jonathan Ceaser',
+    'Eddie Lang',
+    'Bryce Greene',
+    'The Dunwells',
+    'Levi Holland',
+    'Levi Holland',
+    'JUQBOXMUSIC',
+    'Bryce Greene',
+    'Purrple Cat',
+    'Kevin MacLeod',
+    'GMoneyOnTheBeat',
+    'Leonell Cassio',
+    'Ed Sheeran',
+    'Ethos',
+    'Dee Yan-Key',
+    'Scott Holmes Music',
+    'Johann Strauss',
+    'Kaitlyn Thompson']
 
 // Keep track of songs and authors
 let songIndex = 0
