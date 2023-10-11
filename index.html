@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="output.css" />
   </head>
   <body class="bg-gradient-to-b from-amber-700 to-gray-900 bg-no-repeat min-h-screen">
-    <section class="entire-page flex flex-col m-10">
+    <section class="music-container flex flex-col m-10">
 
       <section class="playing-from-section flex flex-col justify-center text-center mb-10 text-white">
         <p class="uppercase tracking-wider">Playing from playlist</p>
@@ -24,39 +24,35 @@
       </section>
 
       <section class="image-section flex justify-center">
-        <img src="albumart/Better Days.jpg" class="rounded-xl h-96 w-96">
+        <img src="albumart/Better Days.jpg" idc="cover" class="rounded-xl h-96 w-96">
       </section>
 
       <section class="info-section my-10 text-white">
         <h2 class="text-3xl font-semibold">Better Days</h2>
-        <h3 class="text-lg text-gray-400">LAKEY INSPIRED</h3>
+        <h3 id="title" class="text-lg text-gray-400">LAKEY INSPIRED</h3>
 
       </section>
 
-      <section class="scrubber-section text-gray-400 font-semibold">
-        <div class=" bg-white bg-opacity-20 p-1 rounded-xl"></div>
-        <div class="time-subsection flex justify-between px-1 text-sm">
-          <p>0:00</p>
-          <p>3:27</p>
-        </div>
+      <section class="scrubber-section bg-white curspointer h-2 rounded-xl">
+        <div class="scrubber bg-amber-700 rounded-xl h-full w-1/2"></div>
+        <audio src="songs/Better Days - LAKEY INSPIRED.mp3" id="audio"></audio>
       </section>
-
+z
       <section class="icons-section flex justify-center items-center my-10">
-        <div>
-          <img src="icons/play-previous.svg" class="h-10 w-10">
-        </div>
-        <div>
-          <i class="fa-solid fa-play text-4xl border-2 text-black bg-white py-4 px-6 mx-10 rounded-full"></i>
-        </div>
-        <image>
-          <img src="icons/play-next.svg" class="h-10 w-10">
-        </image>
+        <button id="prev">
+          <img src="icons/play-previous.svg" class="h-10 w-10 fas">
+        </button>
+        <button id="play" class="mx-10">
+          <i class="fa-solid fa-play text-4xl border-2 text-black bg-white py-4 px-6 rounded-full fas"></i>
+        </button>
+        <button id="next">
+          <img src="icons/play-next.svg" class="h-10 w-10 fas">
+        </button>
       </section>
-
-      <script src="main.js"></script>
     </section>
     <footer class="flex justify-center text-white">
       <p>UI Coded by Priscilla Harris</p>
     </footer>
+    <script src="main.js"></script>
   </body>
 </html>
