@@ -6,10 +6,12 @@ const audio = document.querySelector('#audio')
 const progress = document.querySelector('.progress')
 const progressContainer = document.querySelector('.progress-container')
 const title = document.querySelector('#title')
+const author = document.querySelector('#author')
 const cover = document.querySelector('#cover')
 
 // Songs
 const songs = ['BestPart', 'Aidan', 'Better Days']
+const authors = ['BestPart', 'Aidan', 'Better Days']
 
 // Keep track of authors
 let songIndex = 2
@@ -25,17 +27,19 @@ function loadSong(song) {
 }
 
 function playSong() {
-musicContainer.classList.add('play')
-playBtn.querySelector('').classList.remove('fa-play')
-playBtn.querySelector('').classList.add('fa-pause')
+    musicContainer.classList.add('play')
+    playBtn.querySelector('i.play-button').classList.remove('fa-play')
+    playBtn.querySelector('i.play-button').classList.add('fa-pause')
 
-audio.play()
+    audio.play()
 }
 
 function pauseSong() {
     musicContainer.classList.remove('play')
-    playBtn.querySelector('').classList.add('fa-play')
-    playBtn.querySelector('').classList.remove('fa-pause')
+    playBtn.querySelector('i.play-button').classList.add('fa-play')
+    playBtn.querySelector('i.play-button').classList.remove('fa-pause')
+    
+    audio.pause()
 }
 
 function prevSong() {
