@@ -8,6 +8,7 @@ const progressContainer = document.querySelector('.progress-container')
 const title = document.querySelector('#title')
 const author = document.querySelector('#author')
 const cover = document.querySelector('#cover')
+const backgroundColor = document.querySelector('.accents')
 
 // Songs
 const songs = [
@@ -52,62 +53,138 @@ const authors = [
     'Scott Holmes Music',
     'Johann Strauss',
     'Kaitlyn Thompson']
+    
+const acc = [
+        // Aidan
+        'Aidan_Acc',
+       
+        // April Kisses
+        'April_Acc',
+
+        // Autumn Sun
+        'Aut_Acc',
+
+        // Best Part of Me
+        'Best_Acc',
+
+        // Better Days
+        'Bet_Acc',
+
+        // Colorful World
+        'Col_Acc',
+
+        // Fly or Die
+        'Fly_Acc',
+
+        // Fraggle
+        'Frag_Acc',
+
+        // I Can't Make You Love Me
+        'Love_Acc',
+
+        // Just Relax
+        'Just_Acc',
+
+        // Local Forecast - Elevator
+        'Local_Acc',
+
+        // MEET ME AT THE TOP
+        'Meet_Acc',
+
+        // Perfect
+        'Perfect_Acc',
+
+        // Polarity
+        'Pol_Acc',
+
+        // Salsa After Work Party
+        'Salsa_Acc',
+
+        // The Paranormal is Real
+        'Para_Acc',
+
+        // Upbeat Funk Pop
+        'Upbeat_Acc',
+
+        // Voices of Spring
+        'Voices_Acc',
+
+        // Your Shoulder
+        'Shoulder_Acc'
+]
+
 
 // Keep track of songs and authors
 let songIndex = 0
 let authorIndex = 0
+let accIndex = 0
+let accRemoval = accIndex - 1
 
 // Initially load song info DOM
-loadSongAndAuthor(songs[songIndex], authors[authorIndex])
+loadSongInfo(songs[songIndex], authors[authorIndex], acc[accIndex])
 
 // Update song details
-function loadSongAndAuthor(song, artist) {
+function loadSongInfo(song, artist, acc) {
     title.innerText = song
     author.innerText = artist
     audio.src=`songs/${song}.mp3`
     cover.src=`albumart/${song}.jpg`
+
+    backgroundColor.classList.add(`from-${acc}`)
+    backgroundColor.classList.add(`to-${acc}_2`)
+
 }
 
 function playSong() {
     musicContainer.classList.add('play')
-    playBtn.querySelector('i.play-button').classList.remove('fa-play')
-    playBtn.querySelector('i.play-button').classList.add('fa-pause')
+    playBtn.querySelector('.play-button').classList.remove('fa-play')
+    playBtn.querySelector('.play-button').classList.add('fa-pause')
 
     audio.play()
 }
 
 function pauseSong() {
     musicContainer.classList.remove('play')
-    playBtn.querySelector('i.play-button').classList.add('fa-play')
-    playBtn.querySelector('i.play-button').classList.remove('fa-pause')
+    playBtn.querySelector('.play-button').classList.add('fa-play')
+    playBtn.querySelector('.play-button').classList.remove('fa-pause')
     
     audio.pause()
 }
 
 function prevSong() {
+    backgroundColor.classList.remove(`from-${acc[accIndex]}`)
+    backgroundColor.classList.remove(`to-${acc[accIndex]}_2`)
+
     songIndex--
     authorIndex--
+    accIndex--
 
     if(songIndex < 0) {
         songIndex = songs.length - 1
         authorIndex = authors.length - 1
+        accIndex = acc.length - 1
     }
 
-    loadSongAndAuthor(songs[songIndex], authors[authorIndex])
+    loadSongInfo(songs[songIndex], authors[authorIndex], acc[accIndex])
 
     playSong()
 }
 
 function nextSong() {
+    backgroundColor.classList.remove(`from-${acc[accIndex]}`)
+    backgroundColor.classList.remove(`to-${acc[accIndex]}_2`)
+
     songIndex++
     authorIndex++
+    accIndex++
 
     if (songIndex > songs.length - 1) {
         songIndex = 0
         authorIndex = 0
+        accIndex = 0
     }
 
-    loadSongAndAuthor(songs[songIndex], authors[authorIndex])
+    loadSongInfo(songs[songIndex], authors[authorIndex], acc[accIndex])
 
     playSong()
 }

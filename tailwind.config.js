@@ -7,8 +7,8 @@ module.exports = {
         transparent: 'transparent',
         current: 'currentColor',
         // Aidan
-        'Aiden_Acc':'#3d5375',
-        'Aiden_Acc_2':'#111827',
+        'Aidan_Acc':'#3d5375',
+        'Aidan_Acc_2':'#111827',
         
         // April Kisses
         'April_Acc':'#BA5333',
