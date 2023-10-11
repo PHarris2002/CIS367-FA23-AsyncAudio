@@ -10,8 +10,17 @@ const author = document.querySelector('#author')
 const cover = document.querySelector('#cover')
 
 // Songs
-const songs = ['Better Days', 'Best Part of Me', 'Aidan']
-const authors = ['LAKEY INSPIRED','The Dunwells', 'Jonathan Ceaser']
+const songs = [
+    'Better Days',
+    'Aidan',
+    'April Kisses',
+    'Autumn Sun',
+    'Best Part of Me',
+    'Fly or Die',
+    'Fraggle',
+    'Colorful World',
+    'April Kisses',]
+const authors = ['LAKEY INSPIRED','Jonathan Ceaser', 'Eddie Lang']
 
 // Keep track of songs and authors
 let songIndex = 0
