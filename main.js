@@ -3,8 +3,8 @@ const playBtn = document.querySelector('#play')
 const prevBtn = document.querySelector('#prev')
 const nextBtn = document.querySelector('#next')
 const audio = document.querySelector('#audio')
-const progress = document.querySelector('.progress')
-const progressContainer = document.querySelector('.progress-container')
+const progress = document.querySelector('.scrubber')
+const progressContainer = document.querySelector('.scrubber-section')
 const title = document.querySelector('#title')
 const author = document.querySelector('#author')
 const cover = document.querySelector('#cover')
@@ -174,19 +174,19 @@ function nextSong() {
     playSong()
 }
 
-// function updateProgress(e) {
-//    const {duration, currentTime} = e.srcElement
-//    const progressPercent = (currentTime/duration) * 100
-//    progress.style.width = `${progressPercent}%`
-// }
+function updateProgress(e) {
+   const {duration, currentTime} = e.srcElement
+   const progressPercent = (currentTime/duration) * 100
+   progress.style.width = `${progressPercent}%`
+}
 
-// function setProgress(e) {
-//     const width = this.clientWidth
-//     const clickX = e.offsetX
-//     const duration = audio.duration
+function setProgress(e) {
+    const width = this.clientWidth
+    const clickX = e.offsetX
+    const duration = audio.duration
 
-//     audio.currentTime = (clickX/width) * duration
-// }
+    audio.currentTime = (clickX/width) * duration
+}
 
 // Event Listeners
 playBtn.addEventListener('click', ()=> {
@@ -235,8 +235,8 @@ prevBtn.addEventListener('click', ()=> {
 prevBtn.addEventListener('click', prevSong)
 nextBtn.addEventListener('click', nextSong)
 
-//audio.addEventListener('timeupdate', updateProgress)
+audio.addEventListener('timeupdate', updateProgress)
 
-//progressContainer.addEventListener('click', setProgress)
+progressContainer.addEventListener('click', setProgress)
 
 audio.addEventListener('ended', nextSong)
