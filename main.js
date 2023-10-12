@@ -55,6 +55,9 @@ const authors = [
     'Kaitlyn Thompson']
     
 const acc = [
+        // Better Days
+        'Bet_Acc',
+
         // Aidan
         'Aidan_Acc',
        
@@ -66,9 +69,6 @@ const acc = [
 
         // Best Part of Me
         'Best_Acc',
-
-        // Better Days
-        'Bet_Acc',
 
         // Colorful World
         'Col_Acc',
@@ -117,22 +117,17 @@ const acc = [
 // Keep track of songs and authors
 let songIndex = 0
 let authorIndex = 0
-let accIndex = 0
-let accRemoval = accIndex - 1
+let currentBackgroundColor = 0;
 
 // Initially load song info DOM
-loadSongInfo(songs[songIndex], authors[authorIndex], acc[accIndex])
+loadSongInfo(songs[songIndex], authors[authorIndex])
 
 // Update song details
-function loadSongInfo(song, artist, acc) {
+function loadSongInfo(song, artist) {
     title.innerText = song
     author.innerText = artist
     audio.src=`songs/${song}.mp3`
     cover.src=`albumart/${song}.jpg`
-
-    backgroundColor.classList.add(`from-${acc}`)
-    backgroundColor.classList.add(`to-${acc}_2`)
-
 }
 
 function playSong() {
@@ -152,39 +147,29 @@ function pauseSong() {
 }
 
 function prevSong() {
-    backgroundColor.classList.remove(`from-${acc[accIndex]}`)
-    backgroundColor.classList.remove(`to-${acc[accIndex]}_2`)
-
     songIndex--
     authorIndex--
-    accIndex--
 
     if(songIndex < 0) {
         songIndex = songs.length - 1
         authorIndex = authors.length - 1
-        accIndex = acc.length - 1
     }
 
-    loadSongInfo(songs[songIndex], authors[authorIndex], acc[accIndex])
+    loadSongInfo(songs[songIndex], authors[authorIndex])
 
     playSong()
 }
 
 function nextSong() {
-    backgroundColor.classList.remove(`from-${acc[accIndex]}`)
-    backgroundColor.classList.remove(`to-${acc[accIndex]}_2`)
-
     songIndex++
     authorIndex++
-    accIndex++
 
     if (songIndex > songs.length - 1) {
         songIndex = 0
         authorIndex = 0
-        accIndex = 0
     }
 
-    loadSongInfo(songs[songIndex], authors[authorIndex], acc[accIndex])
+    loadSongInfo(songs[songIndex], authors[authorIndex])
 
     playSong()
 }
@@ -214,6 +199,45 @@ playBtn.addEventListener('click', ()=> {
         playSong()
     }
 })
+
+prevBtn.addEventListener('click', ()=> {
+    currentBackgroundColor -= 1;
+
+    if (currentBackgroundColor < 0) {
+        currentBackgroundColor = acc.length - 1;
+    }
+
+    // removing the old class and adding the new class
+    backgroundColor.classList.remove(`from-${acc[currentBackgroundColor + 1]}`)
+    backgroundColor.classList.remove(`to-${acc[currentBackgroundColor + 1]}_2`)
+    backgroundColor.classList.add(`from-${acc[currentBackgroundColor]}`)
+    backgroundColor.classList.add(`from-${acc[currentBackgroundColor]}_2`);
+  });
+
+  nextBtn.addEventListener('click', ()=> {
+    currentBackgroundColor += 1;
+
+    if (currentBackgroundColor > acc.length - 1) {
+        currentBackgroundColor = 0;
+    }
+
+    backgroundColor.classList.remove(`from-${acc[currentBackgroundColor - 1]}`)
+    backgroundColor.classList.remove(`to-${acc[currentBackgroundColor - 1]}_2`)
+    backgroundColor.classList.add(`from-${acc[currentBackgroundColor]}`)
+    backgroundColor.classList.add(`to-${acc[currentBackgroundColor]}_2`);
+  });
+
+  prevBtn.addEventListener('click', ()=> {
+    // increment our counter
+    currentBackgroundColor -= 1;
+    // use the remainder operator to roll back to 0
+    // if we reached the end of the list
+    currentBackgroundColor %= acc.length;
+    // update the element's class property,
+    // removing the old class and adding the new class
+    backgroundColor.classList.remove(`from-${acc[currentBackgroundColor - 1]}`)
+    backgroundColor.classList.add(`from-${acc[currentBackgroundColor]}`);
+  });
 
 // Change song events
 prevBtn.addEventListener('click', prevSong)
