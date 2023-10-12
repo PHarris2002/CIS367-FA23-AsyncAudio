@@ -608,6 +608,10 @@ video {
   width: 5rem;
 }
 
+.w-0 {
+  width: 0px;
+}
+
 .min-w-full {
   min-width: 100%;
 }
