@@ -205,13 +205,15 @@ prevBtn.addEventListener('click', ()=> {
 
     if (currentBackgroundColor < 0) {
         currentBackgroundColor = acc.length - 1;
+        backgroundColor.classList.remove(`from-${acc[0]}`)
+        backgroundColor.classList.remove(`to-${acc[0]}_2`)
     }
 
     // removing the old class and adding the new class
     backgroundColor.classList.remove(`from-${acc[currentBackgroundColor + 1]}`)
     backgroundColor.classList.remove(`to-${acc[currentBackgroundColor + 1]}_2`)
     backgroundColor.classList.add(`from-${acc[currentBackgroundColor]}`)
-    backgroundColor.classList.add(`from-${acc[currentBackgroundColor]}_2`);
+    backgroundColor.classList.add(`to-${acc[currentBackgroundColor]}_2`);
   });
 
   nextBtn.addEventListener('click', ()=> {
@@ -219,24 +221,14 @@ prevBtn.addEventListener('click', ()=> {
 
     if (currentBackgroundColor > acc.length - 1) {
         currentBackgroundColor = 0;
+        backgroundColor.classList.remove(`from-${acc[acc.length-1]}`)
+        backgroundColor.classList.remove(`to-${acc[acc.length-1]}_2`)
     }
 
     backgroundColor.classList.remove(`from-${acc[currentBackgroundColor - 1]}`)
     backgroundColor.classList.remove(`to-${acc[currentBackgroundColor - 1]}_2`)
     backgroundColor.classList.add(`from-${acc[currentBackgroundColor]}`)
     backgroundColor.classList.add(`to-${acc[currentBackgroundColor]}_2`);
-  });
-
-  prevBtn.addEventListener('click', ()=> {
-    // increment our counter
-    currentBackgroundColor -= 1;
-    // use the remainder operator to roll back to 0
-    // if we reached the end of the list
-    currentBackgroundColor %= acc.length;
-    // update the element's class property,
-    // removing the old class and adding the new class
-    backgroundColor.classList.remove(`from-${acc[currentBackgroundColor - 1]}`)
-    backgroundColor.classList.add(`from-${acc[currentBackgroundColor]}`);
   });
 
 // Change song events
