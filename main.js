@@ -120,7 +120,6 @@ const authors = [
 // Keep track of songs and authors
 let songIndex = 0
 let authorIndex = 0
-let currentBackgroundColor = 0;
 
 // Initially load song info DOM
 loadSongInfo(songs[songIndex], authors[authorIndex])
@@ -205,37 +204,6 @@ playBtn.addEventListener('click', ()=> {
         playSong()
     }
 })
-
-// prevBtn.addEventListener('click', ()=> {
-//     currentBackgroundColor -= 1;
-
-//     if (currentBackgroundColor < 0) {
-//         currentBackgroundColor = acc.length - 1;
-//         backgroundColor.classList.remove(`from-${acc[0]}`)
-//         backgroundColor.classList.remove(`to-${acc[0]}_2`)
-//     }
-
-//     // removing the old class and adding the new class
-//     backgroundColor.classList.remove(`from-${acc[currentBackgroundColor + 1]}`)
-//     backgroundColor.classList.remove(`to-${acc[currentBackgroundColor + 1]}_2`)
-//     backgroundColor.classList.add(`from-${acc[currentBackgroundColor]}`)
-//     backgroundColor.classList.add(`to-${acc[currentBackgroundColor]}_2`);
-//   });
-
-//   nextBtn.addEventListener('click', ()=> {
-//     currentBackgroundColor += 1;
-
-//     if (currentBackgroundColor > acc.length - 1) {
-//         currentBackgroundColor = 0;
-//         backgroundColor.classList.remove(`from-${acc[acc.length-1]}`)
-//         backgroundColor.classList.remove(`to-${acc[acc.length-1]}_2`)
-//     }
-
-//     backgroundColor.classList.remove(`from-${acc[currentBackgroundColor - 1]}`)
-//     backgroundColor.classList.remove(`to-${acc[currentBackgroundColor - 1]}_2`)
-//     backgroundColor.classList.add(`from-${acc[currentBackgroundColor]}`)
-//     backgroundColor.classList.add(`to-${acc[currentBackgroundColor]}_2`);
-//   });
 
   //get duration & currentTime for Time of song
 function DurTime (e) {
