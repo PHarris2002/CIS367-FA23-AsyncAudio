@@ -9,6 +9,8 @@ const title = document.querySelector('#title')
 const author = document.querySelector('#author')
 const cover = document.querySelector('#cover')
 const backgroundColor = document.querySelector('.accents')
+const currTime = document.querySelector('.curr-time')
+const durTime = document.querySelector('.dur-time')
 
 // Songs
 const songs = [
@@ -54,64 +56,65 @@ const authors = [
     'Johann Strauss',
     'Kaitlyn Thompson']
     
-const acc = [
+
+    accents = [
         // Better Days
-        'Bet_Acc',
+        'linear-gradient(to bottom, #b45309, #111827)',
 
         // Aidan
-        'Aidan_Acc',
-       
+        'linear-gradient(to bottom, #3d5375, #111827)',
+        
         // April Kisses
-        'April_Acc',
+        'linear-gradient(to bottom, #ffffff, #000000)',
 
         // Autumn Sun
-        'Aut_Acc',
+        'linear-gradient(to bottom, #BA5333, #000000)',
 
         // Best Part of Me
-        'Best_Acc',
+        'linear-gradient(to bottom, #5178B4, #111827)',
 
         // Colorful World
-        'Col_Acc',
+        'linear-gradient(to bottom, #FFFFED, #0000E7)',
 
         // Fly or Die
-        'Fly_Acc',
+        'linear-gradient(to bottom, #feeb7b, #bf321b)',
 
         // Fraggle
-        'Frag_Acc',
+        'linear-gradient(to bottom, #44949c, #a2b698)',
 
         // I Can't Make You Love Me
-        'Love_Acc',
+        'linear-gradient(to bottom, #C9BEC8, #111827)',
 
         // Just Relax
-        'Just_Acc',
+        'linear-gradient(to bottom, #D85B7B, #814C9C)',
 
         // Local Forecast - Elevator
-        'Local_Acc',
+        'linear-gradient(to bottom, #D77DB6, #111827)',
 
         // MEET ME AT THE TOP
-        'Meet_Acc',
+        'linear-gradient(to bottom, #DDB496, #6C4E37)',
 
         // Perfect
-        'Perfect_Acc',
+        'linear-gradient(to bottom, #DEE4EC, #277EB5)',
 
         // Polarity
-        'Pol_Acc',
+        'linear-gradient(to bottom, #1115ff, #111827)',
 
         // Salsa After Work Party
-        'Salsa_Acc',
+        'linear-gradient(to bottom, #B03A2E, #5B2C6F)',
 
         // The Paranormal is Real
-        'Para_Acc',
+        'linear-gradient(to bottom, #75663e, #111827)',
 
         // Upbeat Funk Pop
-        'Upbeat_Acc',
+        'linear-gradient(to bottom, #f2c446, #8c4322)',
 
         // Voices of Spring
-        'Voices_Acc',
+        'linear-gradient(to bottom, #4a4831, #4e5425)',
 
         // Your Shoulder
-        'Shoulder_Acc'
-]
+        'linear-gradient(to bottom, #A463FF, #E591FF)',
+    ]
 
 
 // Keep track of songs and authors
@@ -128,6 +131,9 @@ function loadSongInfo(song, artist) {
     author.innerText = artist
     audio.src=`songs/${song}.mp3`
     cover.src=`albumart/${song}.jpg`
+
+    const currentBackground = accents[songIndex]
+    backgroundColor.style.background = currentBackground;
 }
 
 function playSong() {
@@ -200,36 +206,99 @@ playBtn.addEventListener('click', ()=> {
     }
 })
 
-prevBtn.addEventListener('click', ()=> {
-    currentBackgroundColor -= 1;
+// prevBtn.addEventListener('click', ()=> {
+//     currentBackgroundColor -= 1;
 
-    if (currentBackgroundColor < 0) {
-        currentBackgroundColor = acc.length - 1;
-        backgroundColor.classList.remove(`from-${acc[0]}`)
-        backgroundColor.classList.remove(`to-${acc[0]}_2`)
-    }
+//     if (currentBackgroundColor < 0) {
+//         currentBackgroundColor = acc.length - 1;
+//         backgroundColor.classList.remove(`from-${acc[0]}`)
+//         backgroundColor.classList.remove(`to-${acc[0]}_2`)
+//     }
 
-    // removing the old class and adding the new class
-    backgroundColor.classList.remove(`from-${acc[currentBackgroundColor + 1]}`)
-    backgroundColor.classList.remove(`to-${acc[currentBackgroundColor + 1]}_2`)
-    backgroundColor.classList.add(`from-${acc[currentBackgroundColor]}`)
-    backgroundColor.classList.add(`to-${acc[currentBackgroundColor]}_2`);
-  });
+//     // removing the old class and adding the new class
+//     backgroundColor.classList.remove(`from-${acc[currentBackgroundColor + 1]}`)
+//     backgroundColor.classList.remove(`to-${acc[currentBackgroundColor + 1]}_2`)
+//     backgroundColor.classList.add(`from-${acc[currentBackgroundColor]}`)
+//     backgroundColor.classList.add(`to-${acc[currentBackgroundColor]}_2`);
+//   });
 
-  nextBtn.addEventListener('click', ()=> {
-    currentBackgroundColor += 1;
+//   nextBtn.addEventListener('click', ()=> {
+//     currentBackgroundColor += 1;
 
-    if (currentBackgroundColor > acc.length - 1) {
-        currentBackgroundColor = 0;
-        backgroundColor.classList.remove(`from-${acc[acc.length-1]}`)
-        backgroundColor.classList.remove(`to-${acc[acc.length-1]}_2`)
-    }
+//     if (currentBackgroundColor > acc.length - 1) {
+//         currentBackgroundColor = 0;
+//         backgroundColor.classList.remove(`from-${acc[acc.length-1]}`)
+//         backgroundColor.classList.remove(`to-${acc[acc.length-1]}_2`)
+//     }
 
-    backgroundColor.classList.remove(`from-${acc[currentBackgroundColor - 1]}`)
-    backgroundColor.classList.remove(`to-${acc[currentBackgroundColor - 1]}_2`)
-    backgroundColor.classList.add(`from-${acc[currentBackgroundColor]}`)
-    backgroundColor.classList.add(`to-${acc[currentBackgroundColor]}_2`);
-  });
+//     backgroundColor.classList.remove(`from-${acc[currentBackgroundColor - 1]}`)
+//     backgroundColor.classList.remove(`to-${acc[currentBackgroundColor - 1]}_2`)
+//     backgroundColor.classList.add(`from-${acc[currentBackgroundColor]}`)
+//     backgroundColor.classList.add(`to-${acc[currentBackgroundColor]}_2`);
+//   });
+
+  //get duration & currentTime for Time of song
+function DurTime (e) {
+	const {duration,currentTime} = e.srcElement;
+	var sec;
+	var sec_d;
+
+	// define minutes currentTime
+	let min = (currentTime==null)? 0:
+	 Math.floor(currentTime/60);
+	 min = min <10 ? '0'+min:min;
+
+	// define seconds currentTime
+	function get_sec (x) {
+		if(Math.floor(x) >= 60){
+			
+			for (var i = 1; i<=60; i++){
+				if(Math.floor(x)>=(60*i) && Math.floor(x)<(60*(i+1))) {
+					sec = Math.floor(x) - (60*i);
+					sec = sec <10 ? '0'+sec:sec;
+				}
+			}
+		}else{
+		 	sec = Math.floor(x);
+		 	sec = sec <10 ? '0'+sec:sec;
+		 }
+	} 
+
+	get_sec (currentTime,sec);
+
+	// change currentTime DOM
+	currTime.innerHTML = min +':'+ sec;
+
+	// define minutes duration
+	let min_d = (isNaN(duration) === true)? '0':
+		Math.floor(duration/60);
+	 min_d = min_d <10 ? '0'+min_d:min_d;
+
+
+	 function get_sec_d (x) {
+		if(Math.floor(x) >= 60){
+			
+			for (var i = 1; i<=60; i++){
+				if(Math.floor(x)>=(60*i) && Math.floor(x)<(60*(i+1))) {
+					sec_d = Math.floor(x) - (60*i);
+					sec_d = sec_d <10 ? '0'+sec_d:sec_d;
+				}
+			}
+		}else{
+		 	sec_d = (isNaN(duration) === true)? '0':
+		 	Math.floor(x);
+		 	sec_d = sec_d <10 ? '0'+sec_d:sec_d;
+		 }
+	} 
+
+	// define seconds duration
+	
+	get_sec_d (duration);
+
+	// change duration DOM
+	durTime.innerHTML = min_d +':'+ sec_d;
+		
+};
 
 // Change song events
 prevBtn.addEventListener('click', prevSong)

@@ -15,7 +15,7 @@
 
     <link rel="stylesheet" href="output.css" />
   </head>
-  <body class="accents bg-gradient-to-b from-Bet_Acc to-Bet_Acc_2 bg-no-repeat min-h-screen">
+  <body class="accents bg-no-repeat min-h-screen">
     <section class="music-container flex flex-col m-10">
 
       <section class="playing-from-section flex flex-col justify-center text-center mb-10 text-white">
@@ -35,6 +35,10 @@
 
       <section class="scrubber-section bg-white cursor-pointer h-2 rounded-xl">
         <div class="scrubber bg-amber-700 rounded-xl h-full w-0"></div>
+        <div class="time-subsection flex justify-between px-1 text-sm text-gray-400">
+          <p class="curr-time">0:00</p>
+          <p class="dur-time">3:27</p>
+        </div>
         <audio src="songs/Better Days.mp3" id="audio"></audio>
       </section>
 
