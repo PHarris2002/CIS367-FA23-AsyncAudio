@@ -1,16 +1,18 @@
 const musicContainer = document.querySelector('.music-container')
+const infoSection = document.querySelector('.info-section')
 const playBtn = document.querySelector('#play')
 const prevBtn = document.querySelector('#prev')
 const nextBtn = document.querySelector('#next')
 const audio = document.querySelector('#audio')
 const progress = document.querySelector('.scrubber')
 const progressContainer = document.querySelector('.scrubber-section')
+const timeSubsection = document.querySelector('.time-subsection')
 const title = document.querySelector('#title')
 const author = document.querySelector('#author')
 const cover = document.querySelector('#cover')
 const backgroundColor = document.querySelector('.accents')
-const currTime = document.querySelector('.curr-time')
-const durTime = document.querySelector('.dur-time')
+const currTime = document.querySelector('#currTime')
+const durTime = document.querySelector('#durTime')
 
 // Songs
 const songs = [
@@ -19,9 +21,9 @@ const songs = [
     'April Kisses',
     'Autumn Sun',
     'Best Part of Me',
+    'Colorful World',
     'Fly or Die',
     'Fraggle',
-    'Colorful World',
     "I Can't Make You Love Me",
     'Just Relax',
     'Local Forecast - Elevator',
@@ -74,7 +76,7 @@ const authors = [
         'linear-gradient(to bottom, #5178B4, #111827)',
 
         // Colorful World
-        'linear-gradient(to bottom, #FFFFED, #0000E7)',
+        'linear-gradient(to bottom, #a2b698, #111827)',
 
         // Fly or Die
         'linear-gradient(to bottom, #feeb7b, #bf321b)',
@@ -130,9 +132,39 @@ function loadSongInfo(song, artist) {
     author.innerText = artist
     audio.src=`songs/${song}.mp3`
     cover.src=`albumart/${song}.jpg`
+    
+
+    const brightAccents = ['Fly or Die', 'Fraggle', 'MEET ME AT THE TOP', 'Paranormal is Real', 'Your Shoulder', 'Upbeat Funk Pop']
+    if (brightAccents.includes(song))
+    {
+        author.style.color = title.style.color = timeSubsection.style.color = '#444444';
+        progress.style.background = '#444444';
+    }
+
+    else
+    {
+        progress.style.color = title.style.color = '#ffffff'
+        progress.style.background = '#ffffff';
+
+        author.style.color = timeSubsection.style.color = '#9ca3af'
+    }
 
     const currentBackground = accents[songIndex]
     backgroundColor.style.background = currentBackground;
+}
+
+function transitionAnimation() {
+    cover.classList.remove('fade-in')
+    cover.offsetWidth
+    cover.classList.add('fade-in')
+
+    title.classList.remove('slide-in')
+    title.offsetWidth
+    title.classList.add('slide-in')
+
+    author.classList.remove('slide-in')
+    author.offsetWidth
+    author.classList.add('slide-in')
 }
 
 function playSong() {
@@ -160,6 +192,8 @@ function prevSong() {
         authorIndex = authors.length - 1
     }
 
+    transitionAnimation()
+
     loadSongInfo(songs[songIndex], authors[authorIndex])
 
     playSong()
@@ -173,6 +207,8 @@ function nextSong() {
         songIndex = 0
         authorIndex = 0
     }
+
+    transitionAnimation()
 
     loadSongInfo(songs[songIndex], authors[authorIndex])
 
@@ -214,7 +250,7 @@ function DurTime (e) {
 	// define minutes currentTime
 	let min = (currentTime==null)? 0:
 	 Math.floor(currentTime/60);
-	 min = min <10 ? '0'+min:min;
+	 min = min >10 ? '0'+min:min;
 
 	// define seconds currentTime
 	function get_sec (x) {
@@ -240,7 +276,7 @@ function DurTime (e) {
 	// define minutes duration
 	let min_d = (isNaN(duration) === true)? '0':
 		Math.floor(duration/60);
-	 min_d = min_d <10 ? '0'+min_d:min_d;
+	 min_d = min_d >10 ? '0'+min_d:min_d;
 
 
 	 function get_sec_d (x) {
@@ -269,11 +305,13 @@ function DurTime (e) {
 };
 
 // Change song events
-prevBtn.addEventListener('click', prevSong)
-nextBtn.addEventListener('click', nextSong)
+prevBtn.addEventListener('click', prevSong);
+nextBtn.addEventListener('click', nextSong);
 
-audio.addEventListener('timeupdate', updateProgress)
+audio.addEventListener('timeupdate', updateProgress);
 
-progressContainer.addEventListener('click', setProgress)
+progressContainer.addEventListener('click', setProgress);
 
-audio.addEventListener('ended', nextSong)
+audio.addEventListener('ended', nextSong);
+
+audio.addEventListener('timeupdate',DurTime);

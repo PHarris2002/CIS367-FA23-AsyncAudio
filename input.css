@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Shrink on Click */
+.shrink {
+    transform: translateZ(0);
+    transition-duration: 0.1s;
+    transition-property: transform;
+}
+
+
+.shrink:active {
+    transform: scale(0.9);
+}
+
+.fade-in {
+    animation: fadeIn 1s;
+}
+
+.slide-in {
+    animation: 0.5s slideIn;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+@keyframes slideIn {
+from {
+    margin-left: 20%;
+}
+to {
+    margin-left: 0%;
+}
+0% { opacity: 0; }
+100% { opacity: 1; }
+}

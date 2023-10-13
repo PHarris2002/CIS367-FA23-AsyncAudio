@@ -24,38 +24,38 @@
       </section>
 
       <section class="image-section flex justify-center">
-        <img src="albumart/Better Days.jpg" id="cover" class="rounded-xl h-96 w-96 object-cover">
+        <img src="albumart/Better Days.jpg" id="cover" class="rounded-xl h-96 w-96 object-cover fade-in">
       </section>
 
       <section class="info-section my-10 text-white">
-        <h2 id="title" class="text-3xl font-semibold">Better Days</h2>
-        <h3 id="author" class="text-lg text-gray-400">LAKEY INSPIRED</h3>
+        <h2 id="title" class="text-3xl font-semibold slide-in">Better Days</h2>
+        <h3 id="author" class="text-lg text-gray-400 slide-in">LAKEY INSPIRED</h3>
 
       </section>
 
       <section class="scrubber-section bg-opacity-20 bg-white cursor-pointer h-2 rounded-xl">
         <div class="scrubber bg-white rounded-xl h-full w-0"></div>
         <div class="time-subsection flex justify-between px-1 text-sm text-gray-400">
-          <p class="curr-time">0:00</p>
-          <p class="dur-time">3:27</p>
+          <p id="currTime">0:00</p>
+          <p id="durTime">3:27</p>
         </div>
         <audio src="songs/Better Days.mp3" id="audio"></audio>
       </section>
 
       <section class="icons-section flex justify-center items-center my-10">
         <button id="prev">
-          <img src="icons/play-previous.svg" class="h-10 w-10 object-cover">
+          <img src="icons/play-previous.svg" class="h-10 w-10 object-cover shrink">
         </button>
         <button id="play" class="mx-10">
-          <i class="play-button flex fa-solid fa-play text-4xl border-2 text-black bg-white h-20 w-20 items-center justify-center rounded-full"></i>
+          <i class="play-button shrink flex fa-solid fa-play text-4xl border-2 text-black bg-white h-20 w-20 items-center justify-center rounded-full"></i>
         </button>
         <button id="next">
-          <img src="icons/play-next.svg" class="h-10 w-10 object-cover">
+          <img src="icons/play-next.svg" class="h-10 w-10 object-cover shrink">
         </button>
       </section>
     </section>
     <footer class="flex justify-center text-white">
-      <p>UI Coded by Priscilla Harris</p>
+      <p>Build by Priscilla Harris</p>
     </footer>
     <script src="main.js"></script>
   </body>
