@@ -132,6 +132,8 @@ function loadSongInfo(song, artist) {
     author.innerText = artist
     audio.src=`songs/${song}.mp3`
     cover.src=`albumart/${song}.jpg`
+
+    transitionAnimation()
     
 
     const brightAccents = ['Fly or Die', 'Fraggle', 'MEET ME AT THE TOP', 'Paranormal is Real', 'Your Shoulder', 'Upbeat Funk Pop']
@@ -192,8 +194,6 @@ function prevSong() {
         authorIndex = authors.length - 1
     }
 
-    transitionAnimation()
-
     loadSongInfo(songs[songIndex], authors[authorIndex])
 
     playSong()
@@ -207,8 +207,6 @@ function nextSong() {
         songIndex = 0
         authorIndex = 0
     }
-
-    transitionAnimation()
 
     loadSongInfo(songs[songIndex], authors[authorIndex])
 
